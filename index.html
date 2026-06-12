@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="転職適性検査をゲーム感覚で学べる、1日5分のトレーニングアプリ">
+  <title>FitQuest | 適性検査を、攻略しよう。</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+
+  <div class="app-shell">
+    <header class="topbar">
+      <button class="brand" data-action="home" aria-label="ホームへ戻る">
+        <span class="brand-mark">
+          <svg viewBox="0 0 40 40" aria-hidden="true">
+            <path d="M10 8h20v8H18v5h10v8H18v7h-8V8Z" fill="currentColor"/>
+            <path d="m27 22 7 7-7 7" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span>FitQuest</span>
+      </button>
+
+      <div class="topbar-actions">
+        <div class="streak-pill" title="連続学習日数">
+          <span class="streak-icon">◆</span>
+          <strong id="headerStreak">3</strong>
+          <span>日連続</span>
+        </div>
+        <button class="icon-button" id="soundButton" aria-label="効果音を切り替える">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 9v6h4l5 4V5L8 9H4Zm12.5 3a4.5 4.5 0 0 0-2-3.74v7.48A4.5 4.5 0 0 0 16.5 12Z" fill="currentColor"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <main id="app" aria-live="polite"></main>
+  </div>
+
+  <template id="homeTemplate">
+    <section class="home-screen">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow"><span></span> 1日5分の適性検査トレーニング</div>
+          <h1>適性検査を、<br><em>攻略しよう。</em></h1>
+          <p>苦手な問題も、ゲームみたいに解けば続けられる。<br>あなたのペースで、転職の準備を一歩ずつ。</p>
+
+          <div class="hero-actions">
+            <button class="primary-button" data-action="start" data-mode="mix">
+              今日のクエストを始める
+              <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <span class="time-note"><span class="pulse-dot"></span> 全5問・約3分</span>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="orbit orbit-one"></div>
+          <div class="orbit orbit-two"></div>
+          <div class="brain-card">
+            <div class="brain-topline">
+              <span>本日の脳コンディション</span>
+              <span class="live-badge">LIVE</span>
+            </div>
+            <div class="brain-score-row">
+              <div class="score-ring" style="--score: 78">
+                <div><strong>78</strong><span>FIT SCORE</span></div>
+              </div>
+              <div class="mini-bars">
+                <div><span>言語</span><i><b style="width: 82%"></b></i><strong>82</strong></div>
+                <div><span>計数</span><i><b style="width: 65%"></b></i><strong>65</strong></div>
+                <div><span>推理</span><i><b style="width: 76%"></b></i><strong>76</strong></div>
+              </div>
+            </div>
+            <div class="level-up"><span>LEVEL 7</span><i><b></b></i><strong>あと 120 XP</strong></div>
+          </div>
+          <div class="float-chip chip-a"><span>+20</span> XP GET!</div>
+          <div class="float-chip chip-b">BEST <strong>4</strong> COMBO</div>
+        </div>
+      </div>
+
+      <section class="dashboard">
+        <div class="section-heading">
+          <div>
+            <span class="section-number">01</span>
+            <h2>トレーニングを選ぶ</h2>
+          </div>
+          <p>苦手分野を集中攻略</p>
+        </div>
+
+        <div class="category-grid">
+          <button class="category-card verbal" data-action="start" data-mode="verbal">
+            <span class="category-icon">あ</span>
+            <span class="category-main"><small>VERBAL</small><strong>言語</strong><em>語句・文章理解</em></span>
+            <span class="category-progress"><i><b style="width: 82%"></b></i><strong>82%</strong></span>
+            <span class="card-arrow">↗</span>
+          </button>
+          <button class="category-card numeric" data-action="start" data-mode="numeric">
+            <span class="category-icon">π</span>
+            <span class="category-main"><small>NUMERIC</small><strong>計数</strong><em>割合・表の読み取り</em></span>
+            <span class="category-progress"><i><b style="width: 65%"></b></i><strong>65%</strong></span>
+            <span class="card-arrow">↗</span>
+          </button>
+          <button class="category-card logic" data-action="start" data-mode="logic">
+            <span class="category-icon">
+              <svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="12" cy="12" r="5"/><circle cx="32" cy="12" r="5"/><circle cx="22" cy="32" r="5"/><path d="m16 15 4 12m8-12-4 12M17 12h10"/></svg>
+            </span>
+            <span class="category-main"><small>LOGIC</small><strong>推理</strong><em>論理・規則性</em></span>
+            <span class="category-progress"><i><b style="width: 76%"></b></i><strong>76%</strong></span>
+            <span class="card-arrow">↗</span>
+          </button>
+          <button class="category-card personality" data-action="start" data-mode="personality">
+            <span class="category-icon">◎</span>
+            <span class="category-main"><small>PERSONALITY</small><strong>性格傾向</strong><em>自分らしい回答練習</em></span>
+            <span class="category-progress"><i><b style="width: 40%"></b></i><strong>NEW</strong></span>
+            <span class="card-arrow">↗</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="bottom-grid">
+        <div class="weekly-card">
+          <div class="section-heading compact">
+            <div><span class="section-number">02</span><h2>今週のリズム</h2></div>
+            <strong id="weekCount">12問クリア</strong>
+          </div>
+          <div class="week-chart" id="weekChart"></div>
+        </div>
+
+        <div class="tip-card">
+          <span class="tip-label">TODAY'S TIP</span>
+          <blockquote>「速さ」より先に、<br><strong>問題の型</strong>を見抜こう。</blockquote>
+          <p>同じ型の問題は、解き方も同じ。まずは分類する癖をつけると正答率が上がります。</p>
+          <button data-action="start" data-mode="logic">推理問題で試す <span>→</span></button>
+          <span class="tip-shape">?</span>
+        </div>
+      </section>
+    </section>
+  </template>
+
+  <template id="quizTemplate">
+    <section class="quiz-screen">
+      <div class="quiz-header">
+        <button class="quit-button" data-action="home" aria-label="クイズを終了する">×</button>
+        <div class="quiz-progress-wrap">
+          <div class="quiz-meta">
+            <span id="quizCategory">MIX QUEST</span>
+            <strong><span id="questionNumber">1</span> / <span id="questionTotal">5</span></strong>
+          </div>
+          <div class="quiz-progress"><i id="quizProgress"></i></div>
+        </div>
+        <div class="timer" id="timer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 9v4l3 2M9 3h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <strong id="timerText">00:45</strong>
+        </div>
+      </div>
+
+      <div class="quiz-stage">
+        <div class="question-card">
+          <div class="question-tag" id="questionTag">言語・二語の関係</div>
+          <h2 id="questionText"></h2>
+          <p class="question-sub" id="questionSub"></p>
+          <div class="visual-question" id="visualQuestion"></div>
+          <div class="answer-list" id="answerList"></div>
+        </div>
+
+        <aside class="combo-panel">
+          <span>CURRENT COMBO</span>
+          <strong><b id="comboCount">0</b> COMBO</strong>
+          <div class="combo-dots" id="comboDots"></div>
+          <p>連続正解で<br>獲得XPがアップ！</p>
+        </aside>
+      </div>
+
+      <div class="feedback-drawer" id="feedbackDrawer">
+        <div class="feedback-icon" id="feedbackIcon">✓</div>
+        <div class="feedback-copy">
+          <span id="feedbackLabel">正解！</span>
+          <strong id="feedbackTitle"></strong>
+          <p id="feedbackText"></p>
+        </div>
+        <button class="next-button" id="nextButton">次の問題へ <span>→</span></button>
+      </div>
+    </section>
+  </template>
+
+  <template id="resultTemplate">
+    <section class="result-screen">
+      <div class="result-card">
+        <div class="confetti" aria-hidden="true">
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        </div>
+        <span class="result-kicker">QUEST COMPLETE</span>
+        <h1>今日のトレーニング、完了！</h1>
+        <p>小さな積み重ねが、本番の自信になります。</p>
+
+        <div class="result-score">
+          <div class="result-ring" id="resultRing">
+            <span><strong id="resultPercent">80</strong><small>%</small></span>
+          </div>
+          <div class="result-details">
+            <div><span>正解数</span><strong id="resultCorrect">4 / 5</strong></div>
+            <div><span>最大コンボ</span><strong id="resultCombo">3</strong></div>
+            <div><span>獲得XP</span><strong class="lime" id="resultXp">+100 XP</strong></div>
+          </div>
+        </div>
+
+        <div class="result-message" id="resultMessage">
+          <span>GOOD!</span>
+          <p>問題のパターンが見えてきています。この調子で繰り返しましょう。</p>
+        </div>
+
+        <div class="result-actions">
+          <button class="secondary-button" data-action="home">ホームへ戻る</button>
+          <button class="primary-button" data-action="retry">もう一度挑戦 <span>↻</span></button>
+        </div>
+      </div>
+    </section>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>
