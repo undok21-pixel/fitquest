@@ -481,6 +481,172 @@ function buildLogicQuestions() {
   return generated;
 }
 
+function buildAdvancedQuestions() {
+  return [
+    createChoiceQuestion({
+      category: "verbal",
+      tag: "言語・長文要旨",
+      question: "次の文章の要旨として最も適切なものを選んでください。",
+      sub: "新制度の導入では、効率化だけを目的にすると現場の納得を得にくい。制度が実際に使われるためには、利用者が何を負担に感じるかを把握し、手順の簡素化と説明責任を両立させる必要がある。",
+      correctAnswer: "制度の定着には効率化だけでなく利用者視点の設計が必要である",
+      distractors: ["新制度は効率化を目的にすれば現場に定着する", "利用者への説明より手順の削減を優先すべきである", "制度導入では現場の反応を考慮する必要はない"],
+      title: "主張は後半の条件にある",
+      explanation: "文章は効率化だけでは不十分で、利用者の負担把握と説明責任が必要だと述べています。"
+    }),
+    createChoiceQuestion({
+      category: "verbal",
+      tag: "言語・趣旨判定",
+      question: "筆者の考えと一致するものを選んでください。",
+      sub: "短期的な成果だけを評価すると、再現性の低い偶然の成功まで高く評価してしまう。評価制度には、結果だけでなく、結果に至る仮説検証の質を含めるべきである。",
+      correctAnswer: "成果評価では結果だけでなく過程の質も見るべきである",
+      distractors: ["偶然の成功は必ず評価から除外すべきである", "短期成果を重視すれば評価は公平になる", "仮説検証は成果が出なかった場合だけ評価すればよい"],
+      title: "結果と過程の両方を評価する",
+      explanation: "筆者は短期成果だけの評価を問題視し、仮説検証の質も含めるべきだと主張しています。"
+    }),
+    createChoiceQuestion({
+      category: "verbal",
+      tag: "言語・空欄補充",
+      question: "空欄に入る最も適切な語句を選んでください。",
+      sub: "A案は導入費用が低い。＿＿＿、運用後の保守負担はB案より大きい。",
+      correctAnswer: "一方で",
+      distractors: ["したがって", "つまり", "たとえば"],
+      title: "メリットとデメリットの対比",
+      explanation: "導入費用の低さと保守負担の大きさを対比しているため「一方で」が適切です。"
+    }),
+    createChoiceQuestion({
+      category: "verbal",
+      tag: "言語・文整序",
+      question: "自然な文章になる順序を選んでください。",
+      sub: "①ただし、初期段階では利用率が低い。②社内FAQを整備すると問い合わせ件数は減る。③そのため、周知と検索性の改善が必要である。",
+      correctAnswer: "② → ① → ③",
+      distractors: ["① → ② → ③", "② → ③ → ①", "③ → ② → ①"],
+      title: "一般論、制約、対策の順",
+      explanation: "FAQ整備の効果を述べ、ただし利用率が低いという制約を置き、その対策に進む流れです。"
+    }),
+    createChoiceQuestion({
+      category: "verbal",
+      tag: "言語・二語の関係",
+      question: "「監査：不備」と同じ関係になるものを選んでください。",
+      sub: "左の行為が右の対象を見つける関係です。",
+      correctAnswer: "検査：異常",
+      distractors: ["記録：資料", "分析：方針", "交渉：契約"],
+      title: "行為と発見対象の関係",
+      explanation: "監査で不備を見つけるように、検査では異常を見つけます。"
+    }),
+    createChoiceQuestion({
+      category: "numeric",
+      tag: "計数・損益算",
+      question: "原価1,200円の商品に原価の25%の利益を見込んで定価を付けました。その後、定価の10%引きで販売しました。利益はいくらですか。",
+      sub: "定価、販売価格、利益の順に計算します。",
+      correctAnswer: "150円",
+      distractors: ["120円", "180円", "300円"],
+      title: "1,500円で定価設定、販売価格は1,350円",
+      explanation: "定価は1,200×1.25=1,500円。10%引きで1,350円。利益は1,350-1,200=150円です。"
+    }),
+    createChoiceQuestion({
+      category: "numeric",
+      tag: "計数・仕事算",
+      question: "Aは12日、Bは18日で同じ仕事を終えます。2人で一緒に作業すると何日で終わりますか。",
+      sub: "1日あたりの仕事量を足します。",
+      correctAnswer: "7.2日",
+      distractors: ["6日", "7.5日", "15日"],
+      title: "1/12 + 1/18 = 5/36",
+      explanation: "2人の1日分は5/36です。全体1を割ると36/5=7.2日です。"
+    }),
+    createChoiceQuestion({
+      category: "numeric",
+      tag: "計数・集合",
+      question: "100人に調査したところ、Aを利用する人は62人、Bを利用する人は48人、どちらも利用する人は25人でした。少なくとも一方を利用する人は何人ですか。",
+      sub: "重複分を一度引きます。",
+      correctAnswer: "85人",
+      distractors: ["75人", "90人", "110人"],
+      title: "62 + 48 - 25 = 85",
+      explanation: "AとBを単純に足すと両方利用者を二重に数えるため、25人を引きます。"
+    }),
+    createChoiceQuestion({
+      category: "numeric",
+      tag: "計数・資料読取",
+      question: "表から、2025年の営業利益率が最も高い部門を選んでください。",
+      sub: "営業利益率 = 営業利益 ÷ 売上高。金額の大きさではなく率を比較します。",
+      visual: `<table class="data-table"><tr><th>部門</th><th>売上高</th><th>営業利益</th></tr><tr><td>A</td><td>240</td><td>36</td></tr><tr><td>B</td><td>180</td><td>30</td></tr><tr><td>C</td><td>300</td><td>42</td></tr><tr><td>D</td><td>150</td><td>27</td></tr></table>`,
+      correctAnswer: "D",
+      distractors: ["A", "B", "C"],
+      title: "Dは18%",
+      explanation: "Aは15%、Bは約16.7%、Cは14%、Dは18%です。Dが最も高くなります。"
+    }),
+    createChoiceQuestion({
+      category: "numeric",
+      tag: "計数・推定",
+      question: "ある商品の売上は1月が80万円、2月が96万円、3月が120万円でした。1月から3月までの平均月次成長率に最も近いものはどれですか。",
+      sub: "2か月で80万円から120万円になっています。",
+      correctAnswer: "約22%",
+      distractors: ["約15%", "約25%", "約50%"],
+      title: "2か月で1.5倍、平方根を使う",
+      explanation: "月次成長率rは80×(1+r)^2=120。1+r=√1.5≈1.225なので約22%です。"
+    }),
+    createChoiceQuestion({
+      category: "logic",
+      tag: "推理・命題",
+      question: "次の条件から必ず言えるものを選んでください。",
+      sub: "条件：優先顧客は全員、専任担当がいる。専任担当がいる顧客の一部は法人顧客である。X社は優先顧客である。",
+      correctAnswer: "X社には専任担当がいる",
+      distractors: ["X社は法人顧客である", "法人顧客は全員優先顧客である", "専任担当がいる顧客は全員優先顧客である"],
+      title: "全称条件だけを確実に使う",
+      explanation: "優先顧客なら専任担当がいる、X社は優先顧客。この2条件からX社には専任担当がいると言えます。"
+    }),
+    createChoiceQuestion({
+      category: "logic",
+      tag: "推理・対応表",
+      question: "A、B、C、Dが月曜から木曜に1人ずつ発表します。Aは水曜ではない。BはAより後。Cは木曜ではない。Dは月曜ではない。Aの曜日としてあり得るものは？",
+      sub: "条件を満たす並びを絞り込みます。",
+      correctAnswer: "月曜",
+      distractors: ["火曜", "水曜", "木曜"],
+      title: "Aは月曜のみ成立",
+      explanation: "BはAより後なのでAは木曜不可。Aが火曜だとBは水曜か木曜、残り条件でDが月曜になり矛盾します。Aは月曜です。"
+    }),
+    createChoiceQuestion({
+      category: "logic",
+      tag: "推理・対応関係",
+      question: "A、B、Cの3商品について、価格はA>B>C、利益率はC>A>Bである。価格と利益率の順位が同じ商品はどれですか。",
+      sub: "それぞれの順位を表にして比較します。",
+      correctAnswer: "該当なし",
+      distractors: ["A", "B", "C"],
+      title: "Aは価格1位、利益率2位ではないため注意",
+      explanation: "価格順位はA=1位、B=2位、C=3位。利益率順位はC=1位、A=2位、B=3位です。同じ順位の商品はありません。したがって正しくは「該当なし」です。"
+    }),
+    createChoiceQuestion({
+      category: "logic",
+      tag: "推理・数列",
+      question: "数列「3、8、18、38、78、？」の次に入る数字を選んでください。",
+      sub: "前の数に同じ操作をしていないか確認します。",
+      correctAnswer: "158",
+      distractors: ["118", "148", "160"],
+      title: "前の数を2倍して2を足す",
+      explanation: "3×2+2=8、8×2+2=18と続きます。78×2+2=158です。"
+    }),
+    createChoiceQuestion({
+      category: "logic",
+      tag: "推理・論理条件",
+      question: "P、Q、Rの3人が発言した。P「Qは正直者だ」Q「Rは正直者ではない」R「PとQのうち正直者は1人だけだ」。正直者は常に真実を言い、嘘つきは常に嘘を言う。正直者は誰ですか。",
+      sub: "仮定して矛盾がない組み合わせを探します。",
+      correctAnswer: "PとQ",
+      distractors: ["Pだけ", "Qだけ", "Rだけ"],
+      title: "PとQが正直者だと矛盾しない",
+      explanation: "PとQが正直なら、Pの発言もQの発言も真です。Rは嘘つきなので「PとQのうち正直者は1人だけ」は偽となり、条件と一致します。"
+    }),
+    {
+      category: "personality",
+      tag: "性格傾向・一貫性",
+      question: "短期間で成果を求められる仕事では、あなたに最も近い行動は？",
+      sub: "実際の適性検査では、似た価値観を別表現で問われます。自分の傾向を一貫して選びます。",
+      answers: ["最初に成果条件と期限を明確にする", "細部が完全に固まるまで着手しない", "周囲の動きが決まるまで待つ", "気分が乗る作業から進める"],
+      correct: null,
+      title: "職務場面での回答傾向",
+      explanation: "性格傾向に絶対の正解はありません。似た場面でも、自分の普段の判断基準に沿って一貫して答えることが重要です。"
+    }
+  ];
+}
+
 function buildPersonalityQuestions() {
   const scenarios = [
     ["複数の仕事を同時に任されたとき", ["優先順位を決める", "簡単な仕事から始める", "周囲と分担する", "締め切り順に進める"]],
@@ -544,6 +710,7 @@ function buildPersonalityQuestions() {
 
 function buildQuestionBank() {
   const additions = [
+    ...buildAdvancedQuestions(),
     ...buildVerbalQuestions(),
     ...buildNumericQuestions(),
     ...buildLogicQuestions(),
@@ -574,7 +741,7 @@ const state = {
   maxCombo: 0,
   xp: 0,
   answered: false,
-  seconds: 45,
+  seconds: 40,
   timerId: null,
   sound: true
 };
@@ -635,10 +802,33 @@ function shuffle(items) {
   return shuffled;
 }
 
+function selectQuizQuestions(pool, count) {
+  const byTag = shuffle([...new Set(pool.map(question => question.tag))])
+    .map(tag => shuffle(pool.filter(question => question.tag === tag)));
+  const selected = [];
+
+  while (selected.length < count && byTag.some(group => group.length)) {
+    for (const group of byTag) {
+      if (selected.length >= count) break;
+      const next = group.shift();
+      if (next && !selected.includes(next)) selected.push(next);
+    }
+  }
+
+  if (selected.length < count) {
+    for (const question of shuffle(pool)) {
+      if (selected.length >= count) break;
+      if (!selected.includes(question)) selected.push(question);
+    }
+  }
+
+  return selected;
+}
+
 function startQuiz(mode) {
   state.mode = mode;
   const pool = mode === "mix" ? questions.filter(q => q.category !== "personality") : questions.filter(q => q.category === mode);
-  state.queue = shuffle(pool).slice(0, Math.min(5, pool.length));
+  state.queue = selectQuizQuestions(pool, Math.min(5, pool.length));
   state.index = 0;
   state.correct = 0;
   state.combo = 0;
@@ -739,7 +929,7 @@ function nextQuestion() {
 
 function startTimer() {
   stopTimer();
-  state.seconds = 45;
+  state.seconds = 40;
   updateTimer();
   state.timerId = setInterval(() => {
     state.seconds -= 1;
